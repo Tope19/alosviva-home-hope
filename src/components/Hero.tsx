@@ -46,8 +46,7 @@ const Hero = () => {
           <Button
             onClick={() => scrollToSection("about")}
             size="lg"
-            variant="outline"
-            className="border-2 border-white text-white hover:bg-white hover:text-secondary text-lg px-8 py-6 transition-all"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all"
           >
             Learn More
           </Button>

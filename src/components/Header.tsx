@@ -50,7 +50,7 @@ const Header = () => {
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="text-foreground hover:text-primary transition-colors font-medium"
+                className="text-primary-foreground hover:text-primary transition-colors font-medium"
               >
                 {link.label}
               </button>
@@ -65,7 +65,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-2 text-primary-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -79,7 +79,7 @@ const Header = () => {
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="block w-full text-left px-4 py-2 text-foreground hover:text-primary transition-colors"
+                className="block w-full text-left px-4 py-2 text-primary-foreground hover:text-primary transition-colors"
               >
                 {link.label}
               </button>

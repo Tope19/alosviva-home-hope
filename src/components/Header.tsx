@@ -79,7 +79,7 @@ const Header = () => {
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="block w-full text-left px-4 py-2 text-primary-foreground hover:text-primary transition-colors"
+                className="block w-full text-left px-4 py-2 text-foreground hover:text-primary transition-colors"
               >
                 {link.label}
               </button>

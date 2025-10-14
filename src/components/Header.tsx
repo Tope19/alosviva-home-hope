@@ -31,15 +31,21 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? "bg-white/95 backdrop-blur-lg shadow-xl border-b border-border/50" 
+          : "bg-gradient-to-b from-black/30 to-transparent"
       }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <button
             onClick={() => scrollToSection("hero")}
-            className="font-display text-2xl font-bold text-primary hover:opacity-80 transition-opacity"
+            className={`font-display text-3xl font-bold transition-all duration-300 ${
+              isScrolled 
+                ? "bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent" 
+                : "text-white"
+            }`}
           >
             Alosviva
           </button>
@@ -50,14 +56,23 @@ const Header = () => {
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="text-primary-foreground hover:text-primary transition-colors font-medium"
+                className={`font-semibold text-lg transition-all duration-300 relative group ${
+                  isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-accent"
+                }`}
               >
                 {link.label}
+                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${
+                  isScrolled ? "bg-primary" : "bg-accent"
+                }`} />
               </button>
             ))}
             <Button
               onClick={() => scrollToSection("contact")}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              className={`transition-all duration-300 font-semibold px-6 py-5 rounded-full ${
+                isScrolled 
+                  ? "bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white shadow-lg hover:shadow-xl" 
+                  : "bg-white text-primary hover:bg-white/90 shadow-xl"
+              }`}
             >
               Donate Now
             </Button>
@@ -65,10 +80,12 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-primary-foreground"
+            className={`md:hidden p-2 transition-colors ${
+              isScrolled ? "text-foreground" : "text-white"
+            }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
 

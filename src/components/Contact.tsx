@@ -73,19 +73,16 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 bg-white relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-primary/5" />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-20">
-          <div className="inline-block mb-4 px-5 py-2 bg-gradient-to-r from-accent/10 to-primary/10 rounded-full">
-            <span className="text-accent text-sm font-semibold uppercase tracking-wider">Connect With Us</span>
-          </div>
-          <h2 className="font-display text-5xl md:text-6xl font-bold bg-gradient-to-r from-accent via-primary to-secondary bg-clip-text text-transparent mb-6">
-            Get In Touch
+    <section id="contact" className="py-24 bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">
+            Connect With Us
           </h2>
-          <p className="text-xl text-foreground/80 leading-relaxed">
+          <h3 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">
+            Get In Touch
+          </h3>
+          <p className="text-xl text-muted-foreground leading-relaxed">
             Have questions or want to support our mission? We'd love to hear from you. Reach out
             through any of the channels below.
           </p>
@@ -93,8 +90,8 @@ const Contact = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
-          <div className="bg-card p-10 rounded-3xl shadow-xl border-2 border-border/50 hover:border-primary/30 transition-all duration-500">
-            <h3 className="font-display text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-8">
+          <div className="bg-card p-10 rounded-lg shadow-md border border-border">
+            <h3 className="text-3xl font-bold text-foreground mb-8">
               Send Us a Message
             </h3>
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -161,7 +158,7 @@ const Contact = () => {
               </div>
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white py-6 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
+                className="w-full bg-primary hover:bg-primary/90 text-white py-6 font-semibold text-lg"
               >
                 Send Message →
               </Button>
@@ -170,63 +167,69 @@ const Contact = () => {
 
           {/* Contact Information */}
           <div className="space-y-8">
-            <div className="bg-card p-8 rounded-3xl shadow-lg border border-border/50">
-              <h3 className="font-display text-3xl font-bold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent mb-8">
+            <div className="bg-card p-8 rounded-lg shadow-md border border-border">
+              <h3 className="text-3xl font-bold text-foreground mb-8">
                 Contact Information
               </h3>
               <div className="space-y-6">
-                {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-start gap-5 group">
-                    <div className="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                      <info.icon className="w-7 h-7 text-white" />
+                {contactInfo.map((info, index) => {
+                  const Icon = info.icon;
+                  return (
+                    <div key={index} className="flex items-start gap-5">
+                      <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-foreground mb-2">{info.label}</div>
+                        {info.link ? (
+                          <a
+                            href={info.link}
+                            className="text-muted-foreground hover:text-primary transition-colors"
+                          >
+                            {info.value}
+                          </a>
+                        ) : (
+                          <div className="text-muted-foreground">{info.value}</div>
+                        )}
+                      </div>
                     </div>
-                    <div>
-                      <div className="font-bold text-foreground mb-2 text-lg">{info.label}</div>
-                      {info.link ? (
-                        <a
-                          href={info.link}
-                          className="text-muted-foreground hover:text-primary transition-colors text-lg"
-                        >
-                          {info.value}
-                        </a>
-                      ) : (
-                        <div className="text-muted-foreground text-lg">{info.value}</div>
-                      )}
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
-            <div className="bg-card p-8 rounded-3xl shadow-lg border border-border/50">
-              <h3 className="font-display text-3xl font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent mb-8">
+            <div className="bg-card p-8 rounded-lg shadow-md border border-border">
+              <h3 className="text-3xl font-bold text-foreground mb-8">
                 Follow Us
               </h3>
               <div className="flex gap-4">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center hover:scale-110 hover:rotate-6 transition-all duration-300 group shadow-lg"
-                    aria-label={social.label}
-                  >
-                    <social.icon className="w-8 h-8 text-white" />
-                  </a>
-                ))}
+                {socialLinks.map((social, index) => {
+                  const Icon = social.icon;
+                  return (
+                    <a
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-14 h-14 bg-primary rounded-lg flex items-center justify-center hover:bg-primary/90 transition-colors"
+                      aria-label={social.label}
+                    >
+                      <Icon className="w-7 h-7 text-white" />
+                    </a>
+                  );
+                })}
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-accent via-primary to-secondary p-8 rounded-3xl shadow-2xl">
-              <h4 className="font-display text-2xl font-bold text-white mb-4">
+            <div className="bg-primary p-8 rounded-lg shadow-lg">
+              <h4 className="text-2xl font-bold text-white mb-4">
                 Make a Donation
               </h4>
-              <p className="text-white/90 mb-6 text-lg leading-relaxed">
+              <p className="text-white/90 mb-6 leading-relaxed">
                 Your generous contribution helps us provide shelter, meals, and support services to
                 those in need.
               </p>
-              <Button className="w-full bg-white text-primary hover:bg-white/90 py-6 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all">
+              <Button className="w-full bg-white text-primary hover:bg-white/90 py-6 font-semibold text-lg">
                 Donate Now →
               </Button>
             </div>
